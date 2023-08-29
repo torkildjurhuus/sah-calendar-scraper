@@ -1,0 +1,13 @@
+{
+  "name": "homework-scraper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.5.0",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "scripts": {
+	"dev": "node scraper.js"
+}
+}
