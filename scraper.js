@@ -2,11 +2,11 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const admin = require('firebase-admin');
 
-const serviceAccount = require("./sah-homework-firebase-adminsdk-pksh7-fdd2c52ffe.json");
+const serviceAccount = require(process.env.FIREBASE_ADMIN_CREDENTIALS);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://sah-homework-default-rtdb.europe-west1.firebasedatabase.app"
+    databaseURL: process.env.FIREBASE_DB_URL
 });
 
 const db = admin.database();

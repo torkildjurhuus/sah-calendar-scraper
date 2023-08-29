@@ -1,0 +1,26 @@
+name: Run Scraper Every 30 Minutes
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: yarn install  # Using yarn as per your preference
+
+      - name: Run scraper
+        env:  # Exposing GitHub secrets as environment variables
+          FIREBASE_ADMIN_CREDENTIALS: ${{ secrets.FIREBASE_ADMIN_CREDENTIALS }}
+          FIREBASE_DB_URL: ${{ secrets.FIREBASE_DB_URL }}
+        run: node scraper.js  # Replace 'your-scraper-file.js' with your actual scraper file name
