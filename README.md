@@ -28,7 +28,7 @@ This project is a Node.js application designed to scrape my daughters homework f
 
 The data is scraped and stored in the following JSON format:
 
-\```json
+```json
 [
   {
     "dayname": "Monday",
@@ -37,5 +37,4 @@ The data is scraped and stored in the following JSON format:
     "content": "Event content"
   }
 ]
-\```
 
