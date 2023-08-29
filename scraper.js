@@ -1,6 +1,15 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const fs = require('fs');
+const admin = require('firebase-admin');
+
+const serviceAccount = require("./sah-homework-firebase-adminsdk-pksh7-fdd2c52ffe.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://sah-homework-default-rtdb.europe-west1.firebasedatabase.app"
+});
+
+const db = admin.database();
 
 const targetURL = 'https://sah.fo/?p=579';
 
@@ -22,7 +31,6 @@ const getSchedule = ($) => {
         }
     });
 
-    // Scrape the table
     const tableRows = $('#ease_contentitem_4375 table tbody tr');
     tableRows.each((index, row) => {
         const rowData = {};
@@ -48,12 +56,13 @@ const getSchedule = ($) => {
         tableSchedule: tableData
     };
 
-    fs.writeFile('calendar.json', JSON.stringify(allData, null, 2), (err) => {
-        if (err) {
-            console.error(err);
-            return;
+    const ref = db.ref('calendar');
+    ref.set(allData, (error) => {
+        if (error) {
+            console.log("Data could not be saved:", error);
+        } else {
+            console.log("Data saved successfully!");
         }
-        console.log('Data written to file successfully!');
     });
 };
 
