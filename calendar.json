@@ -1,0 +1,89 @@
+{
+  "weekSchedule": [
+    {
+      "weekNumber": "Vika 35 - 2023",
+      "dayname": "Mánadagur",
+      "date": "28. august",
+      "title": "Sf",
+      "content": "Skygni: rok til og við s. 7"
+    },
+    {
+      "weekNumber": "Vika 35 - 2023",
+      "dayname": "Týsdagur",
+      "date": "29. august",
+      "title": "",
+      "content": ""
+    },
+    {
+      "weekNumber": "Vika 35 - 2023",
+      "dayname": "Mikudagur",
+      "date": "30. august",
+      "title": "Sf",
+      "content": "Skygni: rok til og við s. 10"
+    },
+    {
+      "weekNumber": "Vika 35 - 2023",
+      "dayname": "Hósdagur",
+      "date": "31. august",
+      "title": "",
+      "content": ""
+    },
+    {
+      "weekNumber": "Vika 35 - 2023",
+      "dayname": "Fríggjadagur",
+      "date": "1. september",
+      "title": "",
+      "content": ""
+    }
+  ],
+  "tableSchedule": [
+    {
+      "time": "",
+      "Mánadagur": "Mánadagur",
+      "Týsdagur": "Týsdagur",
+      "Mikudagur": "Mikudagur",
+      "Hósdagur": "Hósdagur",
+      "Fríggjadagur": "Fríggjadagur"
+    },
+    {
+      "time": "08.00 - 08.45",
+      "Mánadagur": "Støddfrøði",
+      "Týsdagur": "Føroyskt",
+      "Mikudagur": "Føroyskt",
+      "Hósdagur": "Føroyskt",
+      "Fríggjadagur": "Kristni"
+    },
+    {
+      "time": "08.45 - 09.30",
+      "Mánadagur": "Støddfrøði",
+      "Týsdagur": "Føroyskt",
+      "Mikudagur": "Føroyskt",
+      "Hósdagur": "Føroyskt",
+      "Fríggjadagur": "Støddfrøði"
+    },
+    {
+      "time": "09.50 - 10.35",
+      "Mánadagur": "Handaverk og list",
+      "Týsdagur": "Floksins tími",
+      "Mikudagur": "Støddfrøði",
+      "Hósdagur": "Føroyskt",
+      "Fríggjadagur": "Støddfrøði"
+    },
+    {
+      "time": "10.35 - 11.20",
+      "Mánadagur": "Handaverk og list",
+      "Týsdagur": "Føroyskt",
+      "Mikudagur": "Støddfrøði",
+      "Hósdagur": "Heimstaðarlæra",
+      "Fríggjadagur": "Støddfrøði"
+    },
+    {
+      "time": "11.50 - 12.35",
+      "Mánadagur": "Føroyskt",
+      "Týsdagur": "Ítróttur",
+      "Mikudagur": "Sangur",
+      "Hósdagur": "Heimstaðarlæra",
+      "Fríggjadagur": ""
+    }
+  ]
+}
