@@ -63,6 +63,7 @@ const getSchedule = ($) => {
         } else {
             console.log("Data saved successfully!");
         }
+        admin.app().delete();
     });
 };
 
