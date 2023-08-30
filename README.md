@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a specialized Node.js application designed to scrape my daughter's homework schedule from a specific webpage and store it in a Firebase Realtime Database. The scraping process is automated and runs every 30 minutes using GitHub Actions.
+This is a specialized Node.js application designed to scrape my daughter's homework schedule from a specific webpage and store it in a Firebase Realtime Database. The scraping process is automated and runs every 20 minutes using GitHub Actions.
 
 ## Features
 
