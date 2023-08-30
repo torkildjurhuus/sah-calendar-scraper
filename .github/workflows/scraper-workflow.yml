@@ -17,10 +17,10 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: yarn install  # Using yarn as per your preference
+        run: npm install
 
       - name: Run scraper
-        env:  # Exposing GitHub secrets as environment variables
+        env:
           FIREBASE_ADMIN_CREDENTIALS: ${{ secrets.FIREBASE_ADMIN_CREDENTIALS }}
           FIREBASE_DB_URL: ${{ secrets.FIREBASE_DB_URL }}
-        run: node scraper.js  # Replace 'your-scraper-file.js' with your actual scraper file name
+        run: node scraper.js
