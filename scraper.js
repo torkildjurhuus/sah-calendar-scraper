@@ -1,6 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const admin = require('firebase-admin');
+const crypto = require('crypto');
 
 const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_CREDENTIALS);
 
@@ -11,9 +12,16 @@ admin.initializeApp({
 
 const db = admin.database();
 
+function hashObject(obj) {
+    const clone = JSON.parse(JSON.stringify(obj));
+    delete clone.lastUpdated; // Remove the lastUpdated field
+    const str = JSON.stringify(clone);
+    return crypto.createHash('md5').update(str, 'utf8').digest('hex');
+}
+
 const targetURL = 'https://sah.fo/?p=579';
 
-const getSchedule = ($) => {
+const getSchedule = async ($) => {
     const weekNumber = $('h4.week_number').text().trim();
     const days = $('ul.schedule li.day');
     const dayData = [];
@@ -35,7 +43,6 @@ const getSchedule = ($) => {
     tableRows.each((index, row) => {
         const rowData = {};
         const cells = $(row).find('td');
-
         cells.each((cellIndex, cell) => {
             const cellContent = $(cell).text().trim();
             if (cellIndex === 0) {
@@ -45,26 +52,37 @@ const getSchedule = ($) => {
                 rowData[dayName] = cellContent;
             }
         });
-
-        if (Object.keys(rowData).length > 1) { // Skip empty or incomplete rows
+        if (Object.keys(rowData).length > 1) {
             tableData.push(rowData);
         }
     });
 
     const allData = {
         weekSchedule: dayData,
-        tableSchedule: tableData
+        tableSchedule: tableData,
+        lastUpdated: new Date().toISOString()
     };
 
     const ref = db.ref('calendar');
-    ref.set(allData, (error) => {
-        if (error) {
-            console.log("Data could not be saved:", error);
-        } else {
-            console.log("Data saved successfully!");
-        }
+    const snapshot = await ref.once('value');
+    const prevData = snapshot.val() || {};
+
+    const newHash = hashObject(allData);
+    const oldHash = hashObject(prevData);
+
+    if (newHash !== oldHash) {
+        ref.set(allData, (error) => {
+            if (error) {
+                console.log("Data could not be saved:", error);
+            } else {
+                console.log("Data saved successfully!");
+            }
+            admin.app().delete();
+        });
+    } else {
+        console.log("No changes in the data. Not updating.");
         admin.app().delete();
-    });
+    }
 };
 
 axios.get(targetURL).then((response) => {
