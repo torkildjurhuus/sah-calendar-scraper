@@ -10,7 +10,6 @@ admin.initializeApp({
 });
 
 const db = admin.database();
-
 const targetURL = 'https://sah.fo/?p=579';
 
 const getSchedule = ($) => {
